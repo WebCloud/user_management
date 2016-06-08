@@ -1,0 +1,153 @@
+body {
+  font-family: Verdana;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+
+  div {
+    width: 70%;
+    text-align: center;
+    padding: 2em;
+    background: #acacac;
+
+    &:not([class*="add-"]) {
+      display: none;
+    }
+
+    &[class*="add-"]:nth-of-type(even) {
+      margin-right: 0;
+    }
+  }
+}
+
+.action {
+  padding: 1em;
+  text-align: center;
+  background: #E0E0E0;
+  color: #424242;
+  cursor: pointer;
+}
+
+.groups {
+  padding: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .group {
+    cursor: move;
+    border: 1px solid #444;
+    border-radius: 0.4em;
+    padding: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    max-width: 17em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    .user-list {
+      padding: 0;
+      margin: 1em 0 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        list-style: none;
+        width: 8em;
+        font-size: 0.7em;
+        text-align: center;
+        margin-bottom: 1em;
+        cursor: move;
+
+        &::before {
+          display: block;
+          content: "";
+          width: 100%;
+          height: 3em;
+          background: url("/img/user.svg") no-repeat center;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+
+    .group-actions {
+      width: 100%;
+      overflow: hidden;
+      height: 0;
+
+      .action {
+        height: 0;
+        transform: scale(0);
+        transition: 0.2s transform ease-in-out;
+      }
+    }
+
+    &:hover {
+      .group-actions {
+        height: auto;
+
+        .action.add-user {
+          transform: scale(1);
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+.user-dragging {
+  header div {
+    &.remove-user {
+      display: block;
+    }
+
+    &[class*="add-"] {
+      display: none;
+    }
+  }
+
+  .group-actions {
+    .action.add-user {
+      transform: scale(0) !important;
+      height: 0 !important;
+    }
+
+    .action.remove-from-group {
+      transform: scale(1);
+      height: auto;
+    }
+  }
+}
+
+.group-dragging {
+  header div {
+    &.remove-group {
+      display: block;
+    }
+
+    &[class*="add-"] {
+      display: none;
+    }
+  }
+}
+
+.user-dragging, .group-dragging {
+  .dropzone {
+    background: #E1F5FE;
+    border: 1px solid #0288D1;
+
+    &--add {
+      background: #F1F8E9;
+      border: 1px solid #7CB342;
+    }
+
+    &--remove {
+      background: #FBE9E7;
+      border: 1px solid #E64A19;
+    }
+  }
+}
