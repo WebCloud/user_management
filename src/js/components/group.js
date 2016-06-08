@@ -69,9 +69,8 @@ export default class Group {
       event.preventDefault();
       const uid = event.dataTransfer.getData('text');
       const userElement = document.querySelector(`[data-uid="${uid}"]`);
-      const newUser = userElement.cloneNode();
-      newUser.textContent = userElement.textContent;
-      this.addUser(newUser);
+      new User({ id: uid, name: userElement.textContent, groupId: this.id });
+
       this.element.classList.remove('dropzone--add');
       return false;
     };

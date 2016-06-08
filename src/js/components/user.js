@@ -6,10 +6,10 @@ export default class User {
   constructor(options) {
     if (typeof options === 'undefined') return;
 
-    const { name, groupId = 0 } = options;
+    const { id, name, groupId = 0 } = options;
 
     this.element = document.createElement('li');
-    this.element.dataset.uid = userIdCount++;
+    this.element.dataset.uid = id || userIdCount++;
     this.element.textContent = name;
     this.element.draggable = true;
 
