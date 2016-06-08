@@ -36,9 +36,7 @@ module.exports = {
   },
   devtool: '#source-map',
   plugins: [
-    new ExtractTextPlugin('../css/bundle.css', {
-      allChunks: true
-    }),
+    new ExtractTextPlugin('../css/bundle.css'),
     new webpack.ProvidePlugin({
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
